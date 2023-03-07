@@ -8,6 +8,12 @@ class BandsController < ApplicationController
     else
       @bands = Band.all
     end
+
+    if turbo_frame_request?
+      render partial: "bands", locals: { bands: @bands }
+    else
+      render :index
+    end
   end
 
   # GET /bands/1 or /bands/1.json
